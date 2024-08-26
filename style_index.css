@@ -1,0 +1,30 @@
+body{
+    color: #fff;
+}
+
+.generate{
+    margin-left: auto;
+}
+
+label{
+    margin: auto;
+}
+
+.k{
+    display: flex;
+    flex-direction:column;
+}
+
+.k_section{
+    background-color: #2EC5CC;
+    border:0;
+    margin-bottom: 10px;
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    box-shadow: 0 0 8px #000;
+}
+
+.k_section p {
+    word-break: break-all; 
+}
