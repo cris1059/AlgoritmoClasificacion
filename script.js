@@ -30,15 +30,9 @@ function readFileXlsx() {
     reader.onload = function (e) {
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
-
-        // Obtener la primera hoja
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
-
-        // Convertir la hoja a JSON
         json = XLSX.utils.sheet_to_json(worksheet);
-
-        // Llamar a writeTable después de que json esté listo
         writeTable();
         arreglo = arrayNomral();
         algortirmo();
@@ -51,8 +45,6 @@ function writeTable() {
     if (!json || json.length === 0) return;
 
     const headers = Object.keys(json[0]);
-
-    // Insertar los encabezados en la tabla
     const headerRow = document.getElementById('headerRow');
     headerRow.innerHTML = '';
     headers.forEach(header => {
@@ -61,7 +53,6 @@ function writeTable() {
         headerRow.appendChild(th);
     });
 
-    // Insertar las filas de datos en la tabla
     const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = '';
     json.forEach(item => {
@@ -105,7 +96,6 @@ function arrayNomral() {
             ks.push([(promedio - i*desviacion), (promedio+i*desviacion)]);
             clasificacion.push([]);
         }
-        // console.log(clasificacion);
 
         for(let i = 0; i < ks.length; i++){
             for(let j = 0; j < arreglo.length; j++){
