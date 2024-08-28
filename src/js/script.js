@@ -9,20 +9,48 @@ function listen() {
 
 function listener(event) {
     if (event.target && event.target.id == 'generate') operations();
+    if (event.target && event.target.id == 'clear') clear();
 }
 
 function operations() {
     k = document.getElementById('k').value;
-    let active = document.querySelectorAll('.load');
-    active.forEach(element =>{
+    const file = document.getElementById('fileInput').files[0];
+    console.log(file);
+    console.log(k);
+    if(file != undefined && k != ''){
+        document.getElementById('clear').style.display = 'flex';
+        lleno = 1;
+        let active = document.querySelectorAll('.load');
+        active.forEach(element =>{
         element.classList.toggle('active');
-    })
-    readFileXlsx();    
-    
+    });
+    readFileXlsx(file);    
+    } else{
+        alert('Ingresa los campos que se te solicitan');
+    }
 }
 
-function readFileXlsx() {
-    const file = document.getElementById('fileInput').files[0];
+function clear() {
+    let active = document.querySelectorAll('.load');
+        active.forEach(element =>{
+        element.classList.toggle('active');
+    })
+    json, arreglo, k, ks = [], promedio, desviacion, clasificacion = []
+    document.getElementById('table').innerHTML = `<table>
+            <thead>
+                <tr id="headerRow"></tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Las filas de datos se generarán dinámicamente -->
+            </tbody>
+        </table>`;
+    document.getElementById('resultados').innerHTML = ``;
+    document.getElementById('result_k').innerHTML = ``;
+    document.getElementById('clear').style.display = 'none';
+}
+
+function readFileXlsx(file) {
+    
 
     if (!file) return;
 

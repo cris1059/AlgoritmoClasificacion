@@ -11,7 +11,6 @@ label{
 }
 
 .k{
-    display: flex;
     flex-direction:column;
 }
 

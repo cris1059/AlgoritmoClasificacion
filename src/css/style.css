@@ -71,3 +71,7 @@ th, td{
 .active{
     display: flex;
 }
+
+#clear{
+    display: none;
+}
