@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', listen);
 
-let json, arreglo, k, ks = [], promedio, desviacion, clasificacion = [];
+let k, ks = [], promedio, desviacion, clasificacion = [];
 
 function listen() {
     const body = document.querySelector('body');
@@ -20,21 +20,15 @@ function operations() {
     if(file != undefined && k != ''){
         document.getElementById('clear').style.display = 'flex';
         lleno = 1;
-        let active = document.querySelectorAll('.load');
-        active.forEach(element =>{
-        element.classList.toggle('active');
-    });
-    readFileXlsx(file);    
+        modalActive('.load');
+        readFileXlsx(file);    
     } else{
         alert('Ingresa los campos que se te solicitan');
     }
 }
 
 function clear() {
-    let active = document.querySelectorAll('.load');
-        active.forEach(element =>{
-        element.classList.toggle('active');
-    })
+    modalActive('.load');
     json, arreglo, k, ks = [], promedio, desviacion, clasificacion = []
     document.getElementById('table').innerHTML = `<table>
             <thead>
@@ -49,52 +43,7 @@ function clear() {
     document.getElementById('clear').style.display = 'none';
 }
 
-function readFileXlsx(file) {
-    
-
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        json = XLSX.utils.sheet_to_json(worksheet);
-        writeTable();
-        arreglo = arrayNomral();
-        algortirmo();
-    };
-
-    reader.readAsArrayBuffer(file);
-}
-
-function writeTable() {
-    if (!json || json.length === 0) return;
-
-    const headers = Object.keys(json[0]);
-    const headerRow = document.getElementById('headerRow');
-    headerRow.innerHTML = '';
-    headers.forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
-    });
-
-    const tableBody = document.getElementById('tableBody');
-    tableBody.innerHTML = '';
-    json.forEach(item => {
-        const tr = document.createElement('tr');
-        headers.forEach(header => {
-            const td = document.createElement('td');
-            td.textContent = item[header];
-            tr.appendChild(td);
-        });
-        tableBody.appendChild(tr);
-    });
-}
-
-function algortirmo() {
+function algoritmo_programa_uno() {
     desviacionEstandar(arreglo);
     let result  =  document.getElementById('resultados');
     result.innerHTML = `<label>Media Aritmetica: ${promedio}</label>
@@ -102,14 +51,6 @@ function algortirmo() {
     calculateK();
     
 }
-
-
-function arrayNomral() {
-    return json.reduce((acc, obj) => {
-        Object.values(obj).forEach(value => acc.push(value));
-        return acc;
-    }, []);}
-
 
     function desviacionEstandar(arr) {
         if (arr.length === 0) return 0;

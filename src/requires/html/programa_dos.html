@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style_index.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="../../../node_modules/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <!--AQUI SE SELECCION CARGA EL ARCHIVO-->
+    <div class="window load_file">
+        <label class="boton" for="fileInput">Cargar el Archivo</label>
+        <input class="desactive" type="file" id="fileInput" />
+        <button id="clear" class="boton generate">Limpiar</button>
+        <button class="generate boton" id="generate">generar</button>
+    </div>
+
+    <!--SE MUESTRA EL DATASET O LA BD DEL ARCHIVO SELECCIONADO-->
+    <div class="window table load" id="table">
+        <table>
+            <thead>
+                <tr id="headerRow"></tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Las filas de datos se generarán dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <!--AQUI SE IMPRIMEN LOS RESULTADOS DADOS-->
+    <div class="window load" id="resultados"></div>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+
+    
+    <script src="../../js/tools-script.js"></script>
+    <script src="../../js/script_programa_dos.js"></script>
+</body>
+</html>
