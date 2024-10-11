@@ -1,47 +1,6 @@
+
 let media_x = 0, media_y = 0, multi = 0, cuadrado = 0, cont = 0;
 
-let json = [
-    {
-        "poblacion estudiantil": 2,
-        "venta trimestral": 58
-    },
-    {
-        "poblacion estudiantil": 6,
-        "venta trimestral": 105
-    },
-    {
-        "poblacion estudiantil": 8,
-        "venta trimestral": 88
-    },
-    {
-        "poblacion estudiantil": 8,
-        "venta trimestral": 118
-    },
-    {
-        "poblacion estudiantil": 12,
-        "venta trimestral": 117
-    },
-    {
-        "poblacion estudiantil": 16,
-        "venta trimestral": 137
-    },
-    {
-        "poblacion estudiantil": 20,
-        "venta trimestral": 157
-    },
-    {
-        "poblacion estudiantil": 20,
-        "venta trimestral": 169
-    },
-    {
-        "poblacion estudiantil": 22,
-        "venta trimestral": 149
-    },
-    {
-        "poblacion estudiantil": 26,
-        "venta trimestral": 202
-    }
-];
 function algoritmo_programa_dos() {
     json.forEach((item, index) => {
         cont++;
@@ -57,6 +16,7 @@ function algoritmo_programa_dos() {
                     y = parseInt(item[key])
                     media_y += y;
                 }
+                
             }
         }
         multi += (x-media_x)*(y-media_y);
